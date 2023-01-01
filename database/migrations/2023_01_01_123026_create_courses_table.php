@@ -17,10 +17,8 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users');
             $table->string('title');
             $table->string('category');
-            $table->string('course_details');
             $table->mediumText('img');
             $table->longText('desc');
-            $table->string('course_fee');
             $table->integer('seats');
             $table->integer('price');
             $table->date('start_at');
