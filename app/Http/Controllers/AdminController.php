@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\couresInfo;
 use App\Models\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -104,6 +105,12 @@ class AdminController extends Controller
         $course->end_at = $request->end_at;
         $course->desc = $request->course_details;
         $course->save();
+        $courseInfo = new couresInfo();
+        $courseInfo->courses_id = Courses::all()->first()->id;
+        $courseInfo->main_topic = $request->topic;
+        $courseInfo->second_topic = $request->topic2;
+        $courseInfo->trd_topic = $request->topic3;
+        $courseInfo->save();
         return redirect('/addCourses');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Courses;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,9 @@ class ProfileController extends Controller
         $user = Auth::user();
         $userID = $user->id;
         $address = Address::where('user_id', $userID)->get()->first();
-        return view('profile', ['user' => $user, 'address' => $address]);
+        $courses = Courses::where('user_id', $userID)->get();
+
+        return view('profile', ['user' => $user, 'address' => $address, 'courses' => $courses]);
     }
 
     /**

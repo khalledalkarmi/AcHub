@@ -29,7 +29,7 @@
                                         <p class="price">${{$c['price']}}</p>
                                     </div>
 
-                                    <h3><a href="/course-details">{{$c['title']}}</a></h3>
+                                    <h3><a href="/course-details/{{$c['id']}}">{{$c['title']}}</a></h3>
                                     <p>{{$c['desc']}}</p>
                                     @php
                                         $trainer = \App\Models\User::find($c['user_id'])

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Courses;
 use App\Models\User;
@@ -37,9 +38,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/course-details', function () {
-    return view('course-details');
-});
+Route::get('/course-details/{id}', [CoursesController::class,'index']);
+Route::get('/rollin/{id}', [CoursesController::class,'rollIn']);
 
 Route::get('/events', function () {
     return view('events');
@@ -50,7 +50,9 @@ Route::get('/pricing', function () {
 });
 
 Route::get('/trainers', function () {
-    return view('trainers');
+    $trainer = \App\Models\User::all()->where('role',1);
+
+    return view('trainers',['trainers'=>$trainer]);
 });
 
 Route::get('/signup', function () {

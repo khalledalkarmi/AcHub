@@ -27,16 +27,16 @@
                             <h2>{{$user['name']}}</h2>
                             <h3>{{$user['job']}}</h3>
                             <div class="social-links mt-2">
-                                @if($address['tw'])
+                                @if(!empty($address['tw']))
                                     <a href="{{$address['tw']}}" class="twitter"><i class="bi bi-twitter"></i></a>
                                 @endif
-                                @if($address['fb'])
+                                @if(!empty($address['fb']))
                                     <a href="{{$address['fb']}}" class="facebook"><i class="bi bi-facebook"></i></a>
                                 @endif
-                                @if($address['in'])
+                                @if(!empty($address['in']))
                                     <a href="{{$address['in']}}" class="instagram"><i class="bi bi-instagram"></i></a>
                                 @endif
-                                @if($address['ln'])
+                                @if(!empty($address['ln']))
                                     <a href="{{$address['ln']}}" class="linkedin"><i class="bi bi-linkedin"></i></a>
                                 @endif
 
@@ -76,6 +76,11 @@
                                             data-bs-target="#profile-change-password">Change Password
                                     </button>
                                 </li>
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab"
+                                            data-bs-target="#courses">Your Courses
+                                    </button>
+                                </li>
 
                             </ul>
                             <div class="tab-content pt-2">
@@ -98,17 +103,17 @@
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Country</div>
-                                        <div class="col-lg-9 col-md-8">{{$address['country']}}</div>
+                                        <div class="col-lg-9 col-md-8">{{($address['country'])}}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8">{{$address['address']}}</div>
+                                        <div class="col-lg-9 col-md-8">{{($address['address'])}}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8">{{$address['phone']}}</div>
+                                        <div class="col-lg-9 col-md-8">{{($address['phone'])}}</div>
                                     </div>
 
                                     <div class="row">
@@ -171,7 +176,10 @@
                                                    class="col-md-4 col-lg-3 col-form-label">Country</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="country" type="text" class="form-control" id="Country"
-                                                       value="{{$address['country']}}">
+
+                                                       value="{{$address['country'] ? $address['country'] :''}}"
+
+                                                >
                                             </div>
                                         </div>
 
@@ -180,7 +188,8 @@
                                                    class="col-md-4 col-lg-3 col-form-label">Address</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="address" type="text" class="form-control" id="Address"
-                                                       value="{{$address['address']}}">
+
+                                                       value="{{$address['address'] ? $address['address']:'' }}">
                                             </div>
                                         </div>
 
@@ -205,7 +214,7 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="tw" type="text" class="form-control" id="Twitter"
-                                                       value="{{$address['tw']}}">
+                                                       value="{{($address['tw'])}}">
                                             </div>
                                         </div>
 
@@ -214,7 +223,7 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="fb" type="text" class="form-control" id="Facebook"
-                                                       value="{{$address['fb']}}">
+                                                       value="{{($address['fb'])}}">
                                             </div>
                                         </div>
 
@@ -223,7 +232,7 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="in" type="text" class="form-control" id="Instagram"
-                                                       value="{{$address['in']}}">
+                                                       value="{{($address['in'])}}">
                                             </div>
                                         </div>
 
@@ -232,7 +241,7 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="ln" type="text" class="form-control" id="Linkedin"
-                                                       value="{{$address['ln']}}">
+                                                       value="{{($address['ln'])}}">
                                             </div>
                                         </div>
 
@@ -281,7 +290,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
@@ -324,6 +332,40 @@
                                             <button type="submit" class="btn btn-primary">Change Password</button>
                                         </div>
                                     </form><!-- End Change Password Form -->
+
+                                </div>
+
+
+                                <div class="tab-pane fade pt-3" id="courses">
+                                    <!--Courses Table-->
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Trainer</th>
+                                            <th scope="col">Start Date</th>
+                                            <th scope="col">End Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($courses as $c)
+                                            @php
+                                                $trainer = \App\Models\User::find($c['user_id'])
+                                            @endphp
+                                            <tr>
+                                                <th scope="row">{{$c['id']}}</th>
+                                                <td>{{$c['title']}}</td>
+                                                <td>{{$c['category']}}</td>
+                                                <td>{{$trainer['name']}}</td>
+                                                <td>{{$c['start_at']}}</td>
+                                                <td>{{$c['end_at']}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    <!-- End CCourses Table -->
 
                                 </div>
 

@@ -41,6 +41,27 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Main Topic <span
+                                            style="font-size: small">Optional</span></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="topic">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Second Topic <span
+                                            style="font-size: small">Optional</span></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="topic2">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">3rd Topic <span
+                                            style="font-size: small">Optional</span></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="topic3">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="category" class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="category">
