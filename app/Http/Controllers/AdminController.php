@@ -113,4 +113,10 @@ class AdminController extends Controller
         $courseInfo->save();
         return redirect('/addCourses');
     }
+
+    public function courses()
+    {
+        $courses = Courses::all();
+        return view('admin.courses', ['courses' => $courses]);
+    }
 }

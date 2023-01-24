@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Courses;
@@ -38,8 +39,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/course-details/{id}', [CoursesController::class,'index']);
-Route::get('/rollin/{id}', [CoursesController::class,'rollIn']);
+Route::get('/course-details/{id}', [CoursesController::class, 'index']);
+Route::get('/rollin/{id}', [CoursesController::class, 'rollIn']);
 
 Route::get('/events', function () {
     return view('events');
@@ -48,11 +49,14 @@ Route::get('/events', function () {
 Route::get('/pricing', function () {
     return view('pricing');
 });
+//cart
+Route::get('/cart', [CartController::class, 'index']);
+
+
 
 Route::get('/trainers', function () {
-    $trainer = \App\Models\User::all()->where('role',1);
-
-    return view('trainers',['trainers'=>$trainer]);
+    $trainer = User::all()->where('role', 1);
+    return view('trainers', ['trainers' => $trainer]);
 });
 
 Route::get('/signup', function () {
@@ -79,6 +83,7 @@ Route::get('/addCourses', function () {
 });
 
 Route::post('/addc', [AdminController::class, 'addCourses']);
+Route::get('/course', [AdminController::class, 'courses']);
 //Profile
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('update_profile', [ProfileController::class, 'update']);

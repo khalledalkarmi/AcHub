@@ -289,7 +289,12 @@
             <ul id="courses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="/addCourses">
-                        <i class="ri ri-database-2-fill"></i><span>Add Courses</span>
+                        <i class="ri ri-add-fill"></i><span>Add Courses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/courses">
+                        <i class="ri ri-book-fill"></i><span>All Courses</span>
                     </a>
                 </li>
                 <li>
@@ -552,6 +557,7 @@
 <!-- Template Main JS File -->
 <script src="../../assets/js/admin.js"></script>
 <script src="../../assets/js/costume.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

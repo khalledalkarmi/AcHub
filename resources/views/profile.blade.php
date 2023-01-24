@@ -39,7 +39,6 @@
                                 @if(!empty($address['ln']))
                                     <a href="{{$address['ln']}}" class="linkedin"><i class="bi bi-linkedin"></i></a>
                                 @endif
-
                             </div>
                         </div>
                     </div>
